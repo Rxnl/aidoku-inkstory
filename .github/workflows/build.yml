@@ -1,0 +1,40 @@
+name: Build InkStory Aidoku Source
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test chapter and page extraction
+        run: node --test tests/extract.test.cjs
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Install Aidoku CLI
+        run: cargo install --git https://github.com/Aidoku/aidoku-rs --rev e1320b0a2e11afb59e4dee374883a2212d325699 --locked aidoku-cli
+
+      - name: Build AIX
+        run: aidoku package .
+
+      - name: Verify AIX
+        run: aidoku verify package.aix
+
+      - name: Upload AIX
+        uses: actions/upload-artifact@v4
+        with:
+          name: inkstory-aix
+          path: package.aix
+          if-no-files-found: error
+
+

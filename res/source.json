@@ -1,0 +1,26 @@
+{
+  "listings": [
+    {
+      "name": "\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u043e\u0435",
+      "id": "popular"
+    },
+    {
+      "name": "\u041d\u043e\u0432\u0438\u043d\u043a\u0438",
+      "id": "latest"
+    }
+  ],
+  "info": {
+    "minAppVersion": "0.7.0",
+    "languages": [
+      "ru"
+    ],
+    "url": "https://inkstory.net",
+    "contentRating": 1,
+    "urls": [
+      "https://inkstory.net"
+    ],
+    "name": "InkStory",
+    "version": 3,
+    "id": "ru.inkstory"
+  }
+}
